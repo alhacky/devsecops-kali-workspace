@@ -1,0 +1,64 @@
+---
+# List of plays
+-
+  # Hosts: where our play will run and options it will run with
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  tags: always
+
+  # Vars: variables that will apply to the play, on all targets 
+
+  # Tasks: the list of tasks that will be executed within 
+  #        the play, this section can also be used for 
+  #        pre and post tasks
+  tasks:
+    # from https://superuser.com/questions/1395954/ansible-playbook-to-determine-os-release
+  - name: System details
+    debug: msg="{{ item }}"
+    with_items: 
+    - "{{ ansible_distribution }}"
+    - "{{ ansible_distribution_version }}"
+    - "{{ ansible_distribution_major_version }}"
+    # Detect if we are running on a WSL2 environment
+  - name: Set wsl2_environment fact default to false
+    set_fact:
+      wsl2_environment: false
+  - name: Set wsl2_environment fact True
+    set_fact:
+      wsl2_environment: true
+    when: ansible_kernel is search("microsoft-standard-WSL2")  
+  # fix for .gnupg/ permissions when building custom images
+  - name: Add fix for .gnupg/ permissions
+    lineinfile:
+      path: "/etc/bash.bashrc"
+      line: "chmod 700 ~/.gnupg/"    
+  - name: Add custom prompt to /etc/skel/.profile
+    lineinfile:
+      path: "/etc/skel/.profile"
+      line: 'export PS1="\[\033[00;32m\][\w]\$\[\033[00m\] "'
+
+  # Handlers: the list of handlers that are executed as a notify 
+  #           key from a task
+
+  # Roles: list of roles to be imported into the play
+  roles:
+  - role: irixjp.role_example_hello
+
+# Add additional plays here (remember the list entry -)
+# Be sure to use the same hosts and connection entries above
+# addtional plays
+
+-
+  # Install build-essential
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Install build-essential
+    apt:
+      name: build-essential
+      update_cache: yes
+
+# Three dots indicate the end of a YAML document
+...

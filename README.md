@@ -1,6 +1,6 @@
-# Kali workspace (Kasm image)
+# DevSecOps workspace (Kasm image)
 
-Minimal docker-compose.yml file for locally running a Kali Linux workspace, using the [Kasm workspace image for Core Kali Linux](https://hub.docker.com/r/kasmweb/core-kali-rolling).
+Immutable-Infrastructure-as-Code (IIaC) workspace image file for DevSecOps for OSINT development, based on the [Kasm workspace image for Core Kali Linux](https://hub.docker.com/r/kasmweb/core-kali-rolling).
 
 ## Requirements
 
@@ -14,13 +14,13 @@ From a bash terminal,
 1. Clone this repo
 
 ```bash
-git clone https://github.com/alhacky/kali-workspace.git
+git clone https://github.com/alhacky/devsecops-workspace-image.git
 ```
 
-2. Change directory into `kali-workspace`.
+2. Change directory into `devsecops-workspace-image`.
 
 ```bash
-cd kali-workspace
+cd devsecops-workspace-image
 ```
 
 3. Pull the workspace image from DockerHub, using docker-compose (Note: Linux users may need to prepend this command with `sudo`):
