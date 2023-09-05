@@ -60,5 +60,28 @@
       name: build-essential
       update_cache: yes
 
+-
+  # Install Graphene OS Tools
+  # See https://grapheneos.org/install/cli#standalone-platform-tools
+  hosts: localhost
+  connection: local
+  tags: install_graphene_os_tools
+
+  tasks:
+  - name: Verify checksum for platform-tools
+    shell: echo 'f2eee6e8220f3dfde6e1acc93c5b25d3d8bd215c0b03585b21665f1ea30d66ba /home/kasm-default-profile/install_files/platform-tools_r34.0.4-linux.zip' | sha256sum -c
+  - name: Extract platform-tools zip file
+    unarchive:
+      src: /home/kasm-default-profile/install_files/platform-tools_r34.0.4-linux.zip
+      dest: /opt
+      remote_src: yes
+      creates: /opt/platform-tools/fastboot
+  - name: Create symlink for fastboot in /usr/local/bin
+    shell: ln -srv /opt/platform-tools/fastboot /usr/local/bin/fastboot
+  - name: Install android-sdk-platform-tools-common
+    apt:
+      name: android-sdk-platform-tools-common
+      update_cache: yes
+
 # Three dots indicate the end of a YAML document
 ...
