@@ -3,7 +3,7 @@ version: "3.7"
 services:
   kasm:
     build: .
-    image: devsecops-workspace-image
+    image: ghcr.io/alhacky/devsecops-workspace-image:main
     ports:
       - "6901:6901"
     environment:
