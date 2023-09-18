@@ -82,6 +82,13 @@
     apt:
       name: android-sdk-platform-tools-common
       update_cache: yes
+  - name: Add kasm-user to plugdev group
+    user:
+      name: kasm-user
+      shell: /bin/bash
+      groups: "plugdev"
+      state: present
+      remove: yes
 
 # Three dots indicate the end of a YAML document
 ...
