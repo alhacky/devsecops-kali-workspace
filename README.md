@@ -1,4 +1,4 @@
-# DevSecOps workspace (Kasm image)
+# DevSecOps Kali workspace (Kasm image)
 
 Immutable-Infrastructure-as-Code (IIaC) workspace image file for DevSecOps for OSINT development, based on the [Kasm workspace image for Core Kali Linux](https://hub.docker.com/r/kasmweb/core-kali-rolling).
 
@@ -14,13 +14,13 @@ From a bash terminal,
 1. Clone this repo
 
 ```bash
-git clone https://github.com/alhacky/devsecops-workspace-image.git
+git clone https://github.com/alhacky/devsecops-kali-workspace.git
 ```
 
-2. Change directory into `devsecops-workspace-image`.
+2. Change directory into `devsecops-kali-workspace`.
 
 ```bash
-cd devsecops-workspace-image
+cd devsecops-kali-workspace
 ```
 
 3. Pull the workspace image from DockerHub, using docker-compose (Note: Linux users may need to prepend this command with `sudo`):
