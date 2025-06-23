@@ -1,4 +1,4 @@
-FROM kasmweb/core-kali-rolling:1.12.0
+FROM kasmweb/core-kali-rolling:1.17.0
 USER root
 
 ENV HOME /home/kasm-default-profile
